@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Chat Widget</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 200vh;
+    background: #0f172a;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+  }
+
+  /* Floating Button */
+  .chat-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 1000;
+  }
+
+  /* Chat Box */
+  .chat-container {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 360px;
+    height: 520px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+  }
+
+  .chat-header {
+    background: #1e293b;
+    color: white;
+    padding: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .close-btn {
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 14px;
+    background: #f8fafc;
+    overflow-y: auto;
+  }
+
+  .message {
+    max-width: 80%;
+    margin-bottom: 12px;
+  }
+
+  .bot {
+    background: #e5e7eb;
+    padding: 10px 14px;
+    border-radius: 14px 14px 14px 4px;
+  }
+
+  .user {
+    background: #2563eb;
+    color: white;
+    margin-left: auto;
+    padding: 10px 14px;
+    border-radius: 14px 14px 4px 14px;
+  }
+
+  .chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #cbd5f5;
+    outline: none;
+  }
+
+  .chat-input button {
+    margin-left: 8px;
+    padding: 10px 16px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Floating AI Button -->
+<div class="chat-toggle" onclick="toggleChat()">
+  🤖
+</div>
+
+<!-- Chat Box -->
+<div class="chat-container" id="chatBox">
+  <div class="chat-header">
+    AI Assistant
+    <span class="close-btn" onclick="toggleChat()">✕</span>
+  </div>
+
+  <div class="chat-messages" id="messages">
+    <div class="message bot">
+      Hello 👋 How can I help you today?
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input id="input" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  function toggleChat() {
+    const chat = document.getElementById("chatBox");
+    chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("input");
+    const text = input.value.trim();
+    if (!text) return;
+
+    const msg = document.createElement("div");
+    msg.className = "message user";
+    msg.innerText = text;
+
+    document.getElementById("messages").appendChild(msg);
+    input.value = "";
+  }
+</script>
+
+</body>
+</html>
