@@ -1,6 +1,0 @@
-fastapi
-uvicorn
-pymongo[srv]
-pandas
-scikit-learn
-numpy
