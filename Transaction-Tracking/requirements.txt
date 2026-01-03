@@ -1,5 +1,0 @@
-streamlit
-pandas
-plotly
-pymongo[srv]
-unicorn-binance-websocket-api
